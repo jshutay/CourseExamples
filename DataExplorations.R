@@ -1,11 +1,10 @@
 
 
 #Install required pacakges for analyses
-install.packages("car"); install.packages("compute.es"); install.packages("ggplot2"); install.packages("multcomp"); install.packages("pastecs"); install.packages("WRS", repos="http://R-Forge.R-Project.org"); install.packages("mlogit"); install.packages("nlme"); install.packages("reshape"); install.packages("effects")
+install.packages("car"); install.packages("ggplot2"); install.packages("pastecs"); install.packages("effects")
 
 #Load required packages
-library(car); library(compute.es); library(ggplot2); library(multcomp); library(pastecs); library(WRS); library(mlogit); library(nlme); library(reshape); library(effects)
-
+library(car); library(ggplot2); library(pastecs); library(effects)
 
 #Inpute data into R 
 theFile <- "https://github.com/jshutay/CourseExamples/blob/master/VidoeGameData.csv"
