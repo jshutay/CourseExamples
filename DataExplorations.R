@@ -8,7 +8,7 @@ library(car); library(compute.es); library(ggplot2); library(multcomp); library(
 
 
 #Inpute data into R 
-theFile <- "CourseExamples/VidoeGameData.csv"
+theFile <- "https://github.com/jshutay/CourseExamples/blob/master/VidoeGameData.csv"
 Brett_data <- read.table (file= theFile, header = TRUE, sep = ",")
 
 
