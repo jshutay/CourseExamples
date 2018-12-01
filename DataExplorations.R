@@ -1,13 +1,12 @@
-
-
 #Install required pacakges for analyses
 install.packages("car"); install.packages("ggplot2"); install.packages("pastecs"); install.packages("effects")
 
 #Load required packages
 library(car); library(ggplot2); library(pastecs); library(effects)
 
+
 #Inpute data into R 
-Brett_data <- read.csv("https://github.com/jshutay/CourseExamples/blob/master/VidoeGameData.csv",
+Brett_data <- read.csv("https://raw.githubusercontent.com/jshutay/CourseExamples/master/VideoGameData.csv",
                        header = TRUE,
                        sep = ",")
 
@@ -17,11 +16,11 @@ Brett_data <- read.csv("https://github.com/jshutay/CourseExamples/blob/master/Vi
 
 #create a bar chart without advertising broken out
 bar <- ggplot(Brett_data, aes(Game, Visits))
-bar + stat_summary(fun.y = mean, geom = "bar", position ="dodge") + stat_summary(fun.data = mean_cl_normal, geom = "errorbar", position = position_dodge(width = 0.90), width = 0.2) + labs(x = "Game", y = "Total time played")
+bar + stat_summary(fun.y = mean, geom = "bar", position ="dodge") + stat_summary(fun.data = mean_cl_normal, geom = "errorbar", position = position_dodge(width = 0.90), width = 0.2) + labs(x = "Game", y = "Total time played in minutes")
 
 #create a bar chart by Advertising, no Game groups
 bar <- ggplot(Brett_data, aes(Advertising, Visits))
-bar + stat_summary(fun.y = mean, geom = "bar", position ="dodge") + stat_summary(fun.data = mean_cl_normal, geom = "errorbar", position = position_dodge(width = 0.90), width = 0.2) + labs(x = "Advertising", y = "Total time played")
+bar + stat_summary(fun.y = mean, geom = "bar", position ="dodge") + stat_summary(fun.data = mean_cl_normal, geom = "errorbar", position = position_dodge(width = 0.90), width = 0.2) + labs(x = "Advertising", y = "Total time played in minutes")
 
 #Testing normality with a Q-Q plot
 qqplot.time <- qplot(sample = Brett_data$Visits, stat="qq") 
@@ -33,8 +32,6 @@ myhistogram + geom_histogram(aes(y = ..density..))
  hist_play <- ggplot(Brett_data, aes(Visits)) + theme(legend.position = "none") + geom_histogram(aes(y = ..density..), colour = "black", fill = "white") + labs(x="Average daily play time", y = "Density")
 hist_play
 
-#Line chart
-line + stat_summary(fun.y = mean, geom = "point") + stat_summary(fun.y = mean, geom = "line", aes(group = Game)) + stat_summary(fun.data = mean_cl_boot, geom = "errorbar", width = 0.2) + labs(x = "Advertising", y = "Average daily play time", colour = "Game")
 
 #Creating separate dataframes for with and without advertising and creating histograms
 advertising<-subset(Brett_data, Brett_data$Advertising == "Yes")
@@ -45,6 +42,9 @@ hist.advertising
 
 hist.no_adv <- ggplot(no_adv, aes(Visits)) + geom_histogram(aes(y = ..density..), fill = "white", colour = "black", binwidth = 1) + labs(x = "Daily Average in Minutes", y = "Density") + stat_function(fun=dnorm, args=list(mean =  mean(no_adv$Visits, na.rm = TRUE), sd = sd(no_adv$Visits, na.rm = TRUE)), colour = "blue", size=1)
 hist.no_adv
+
+#Scatterplot
+scatterplot(Brett_data$Visits, Brett_data$VisitTime)
 
 
 #Testing statistical assumptions for parametric tests
@@ -63,4 +63,4 @@ leveneTest(Brett_data$Visits, Brett_data$Game)
 
 
 
-                                                                                                                                                                                                                                                            
+                                                                                                      
