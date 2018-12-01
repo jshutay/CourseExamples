@@ -7,8 +7,9 @@ install.packages("car"); install.packages("ggplot2"); install.packages("pastecs"
 library(car); library(ggplot2); library(pastecs); library(effects)
 
 #Inpute data into R 
-theFile <- "https://github.com/jshutay/CourseExamples/blob/master/VidoeGameData.csv"
-Brett_data <- read.table (file= theFile, header = TRUE, sep = ",")
+Brett_data <- read.csv("https://github.com/jshutay/CourseExamples/blob/master/VidoeGameData.csv",
+                       header = TRUE,
+                       sep = ",")
 
 
 #Create graphics 
